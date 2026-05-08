@@ -1,5 +1,5 @@
 const SUPABASE_URL   = 'https://obpnydjdhwtamxvdehju.supabase.co';
-const SUPABASE_ANON  = 'COLLE_TA_CLE_ICI';
+const SUPABASE_ANON  = 'sb_publishable_XPUqZNUp8TQfmuX1ajEhjw_DIJFX3o0';
 const STORAGE_BUCKET = 'species-photos';
 const TABLE_NAME     = 'species';
 
