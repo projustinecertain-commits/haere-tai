@@ -3,8 +3,10 @@ let selectedRarete = 0;
 let selectedDanger = '';
 let photoFile = null;
 
-document.getElementById('login-btn').addEventListener('click', tryLogin);
-document.getElementById('password-input').addEventListener('keydown', (e) => { if (e.key === 'Enter') tryLogin(); });
+document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('login-btn').addEventListener('click', tryLogin);
+  document.getElementById('password-input').addEventListener('keydown', (e) => { if (e.key === 'Enter') tryLogin(); });
+});
 
 function tryLogin() {
   const val = document.getElementById('password-input').value;
