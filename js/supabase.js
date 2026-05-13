@@ -1,13 +1,16 @@
-const SUPABASE_URL   = 'https://obpnydjdhwtamxvdehju.supabase.co';
-const SUPABASE_ANON  = 'sb_publishable_XPUqZNUp8TQfmuX1ajEhjw_DIJFX3o0';
-const STORAGE_BUCKET = 'species-photos';
-const TABLE_NAME     = 'species';
+const SUPABASE_URL    = 'https://obpnydjdhwtamxvdehju.supabase.co';
+const SUPABASE_ANON   = 'sb_publishable_XPUqZNUp8TQfmuX1ajEhjw_DIJFX3o0';
+const STORAGE_BUCKET  = 'species-photos';
+const TABLE_NAME      = 'species';
 
+// Client Supabase via CDN
 (function loadSupabase() {
   const script = document.createElement('script');
-  script.src = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js';
+  script.src = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.39.0/dist/umd/supabase.min.js';
   script.onload = () => {
-    window._supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON);
+    window._supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON, {
+      auth: { persistSession: false }
+    });
     document.dispatchEvent(new Event('supabase-ready'));
   };
   document.head.appendChild(script);
@@ -43,6 +46,5 @@ function formatDate(dateStr) {
 function getPhotoUrl(path) {
   if (!path) return '';
   if (path.startsWith('http')) return path;
-  const { data } = window._supabase.storage.from(STORAGE_BUCKET).getPublicUrl(path);
-  return data?.publicUrl || '';
+  return `${SUPABASE_URL}/storage/v1/object/public/${STORAGE_BUCKET}/${path}`;
 }
