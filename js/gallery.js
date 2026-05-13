@@ -13,9 +13,8 @@ async function init() {
 async function loadSpecies() {
   const grid = document.getElementById('gallery-grid');
   try {
-    const res = await fetch(`${SUPABASE_URL}/rest/v1/${TABLE_NAME}?select=*&order=created_at.desc`, {
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/${TABLE_NAME}?select=*&order=created_at.desc&apikey=${SUPABASE_ANON}`, {
       headers: {
-        'apikey': SUPABASE_ANON,
         'Authorization': `Bearer ${SUPABASE_ANON}`
       }
     });
